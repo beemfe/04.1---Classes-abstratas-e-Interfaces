@@ -1,0 +1,74 @@
+abstract class Quadrilatero {
+    private float base;
+    private float altura;
+
+    public Quadrilatero(float base, float altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    public abstract float calcArea();
+
+    public float calcPerimetro() {
+        return 2 * (base + altura);
+    }
+
+    public float getBase() {
+        return base;
+    }
+
+    public void setBase(float base) {
+        this.base = base;
+    }
+
+    public float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(float altura) {
+        this.altura = altura;
+    }
+}
+
+class Paralelogramo extends Quadrilatero {
+    public Paralelogramo(float base, float altura) {
+        super(base, altura);
+    }
+
+    public float calcArea() {
+        return getBase() * getAltura();
+    }
+}
+
+class Trapezio extends Quadrilatero {
+    private float baseMenor;
+
+    public Trapezio(float base, float altura, float baseMenor) {
+        super(base, altura);
+        this.baseMenor = baseMenor;
+    }
+
+    public float calcArea() {
+        return ((getBase() + baseMenor) * getAltura()) / 2;
+    }
+
+    public float getBaseMenor() {
+        return baseMenor;
+    }
+
+    public void setBaseMenor(float baseMenor) {
+        this.baseMenor = baseMenor;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Paralelogramo paralelogramo = new Paralelogramo(5, 3);
+        System.out.println("Área do paralelogramo: " + paralelogramo.calcArea());
+        System.out.println("Perímetro do paralelogramo: " + paralelogramo.calcPerimetro());
+
+        Trapezio trapezio = new Trapezio(10, 5, 4);
+        System.out.println("Área do trapézio: " + trapezio.calcArea());
+        System.out.println("Perímetro do trapézio: " + trapezio.calcPerimetro());
+    }
+}
